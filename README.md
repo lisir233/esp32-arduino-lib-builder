@@ -23,7 +23,7 @@ In comparison to the original [esp32-arduino-lib-builder](https://github.com/esp
 
 * `release/*` is used to recompile the original SDK for a specified version.
 * `debug/*` is used to recompile debug versions based on a specified SDK version.
-* `high_perf/*` is used to recompile high performance versions based on a specified SDK version. It changes some configurations (as below) and can achieve higher performance in some cases, especially for avoiding [screen drifting](https://docs.espressif.com/projects/esp-faq/en/latest/software-framework/peripherals/lcd.html#why-do-i-get-drift-overall-drift-of-the-display-when-esp32-s3-is-driving-an-rgb-lcd-screen) when using RGB LCDs.
+* `high_perf/*` is used to recompile high performance versions based on a specified SDK version. It changes some configurations (as below) and can achieve higher performance in some cases, especially for avoiding [screen drifting](https://docs.espressif.com/projects/esp-faq/en/latest/software-framework/peripherals/lcd.html#why-do-i-get-drift-overall-drift-of-the-display-when-esp32-s3-is-driving-an-rgb-lcd-screen) when using RGB LCDs. (Only available for v3.x and above versions)
 
   * For ESP32-S3 SoCs:
     * It changes the optimization level from `-Os` to `-O2` by enabling `CONFIG_COMPILER_OPTIMIZATION_PERF=y`.
@@ -40,10 +40,13 @@ In comparison to the original [esp32-arduino-lib-builder](https://github.com/esp
 
 ### Debug Versions
 
+Due to the support of specifying the LOG level when compiling v3.x and above versions in esp32-arduino-lib-builder, the branches here are only used to compile debug versions of v2.x.
+
 * [debug/v2.0.13](https://github.com/esp-arduino-libs/esp32-arduino-lib-builder/tree/release/v2.0.13)
-* [debug/v3.0.0-alpha3](https://github.com/esp-arduino-libs/esp32-arduino-lib-builder/tree/release/v3.0.0-alpha3)
 
 ### High Performance Versions
+
+As only v3.x and above versions support the required high-performance configurations, the branches here are only used for compiling the high_perf version of v3.x.
 
 * [high_perf/v3.0.0-alpha3](https://github.com/esp-arduino-libs/esp32-arduino-lib-builder/tree/high_perf/v3.0.0-alpha3)
 
@@ -85,17 +88,21 @@ In comparison to the original [esp32-arduino-lib-builder](https://github.com/esp
 
 4. If you don't need to change the default configurations or just want to compile a specific target, follow the below steps:
 
-  * Click `Actions` and enter the `Manual Build SDK For the Specific Target` workflow.
+  * Click `Actions`, here are two workflows, `Manual Build SDK For (v2) the Specific Target` is used to compile the v2.x version, and `Manual Build SDK For (v3) the Specific Target` is used to compile the v3.x version.
 
-    <img src="docs/_static/manual_step_1.png">
+    <img src="docs/_static/manual_step_0_0.png">
 
-  * Click `Run workflow`, select the branch and the target, click `Run workflow`. Then the compilation process will start.
+  * If you want to compile the **v2.x version**, click `Manual Build SDK For (v2) the Specific Target`, then click `Run workflow`. Here you can select the branch (only available for the `xx/v2.x.x` branches) and the target.
 
-    <img src="docs/_static/manual_step_2.png">
+    <img src="docs/_static/manual_step_0_1.png">
+
+  * If you want to compile the **v3.x version**, click `Manual Build SDK For (v3) the Specific Target`, then click `Run workflow`. Here you can select the branch (only available for the `xx/v3.x.x` branches), the target and log level. So there are no `debug/v3.x.x` branches, you can specify the log level when compiling.
+
+    <img src="docs/_static/manual_step_0_2.png">
+
+  * Then the compilation process will start. After it is complete, download the zip file from the `Artifacts`.
 
     <img src="docs/_static/manual_step_3.png">
-
-5. After the compilation is complete, download the zip file from the `Artifacts`.
 
   <img src="docs/_static/auto_step_7.png">
 
