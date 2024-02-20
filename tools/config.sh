@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export IDF_COMMIT="3662303f31"
+export IDF_COMMIT="072f801"
 export IDF_BRANCH="release/v5.1"
 
 if [ -z $IDF_PATH ]; then
@@ -27,7 +27,7 @@ if [ -z $IDF_TARGET ]; then
 fi
 
 # Owner of the target ESP32 Arduino repository
-AR_USER="espressif"
+AR_USER="lisir233"
 
 # The full name of the repository
 AR_REPO="$AR_USER/arduino-esp32"
